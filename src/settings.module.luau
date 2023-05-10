@@ -11,35 +11,42 @@
 
 return {
 
-    Version = 1,
+	Version = 1,
 
-    Log = function(Script: Script, Message: string): nil
-        print("["..Script.Name.."]: "..Message)
-        return nil
-    end,
+	Log = function(Script: Script, Message: string): nil
+		print("[" .. Script.Name .. "]: " .. Message)
+		return nil
+	end,
 
-    Permissions = {
-        {
-            Name = "Admin",
-            Level = 2,
-            Items = {}
-        },
-        {
-            Name = "Owner",
-            Level = 3,
-            Items = {
-                {
-                    Type = "Custom",
-                    Value = function(Player: Player)
-                        if game.CreatorType == Enum.CreatorType.User then
-                            return Player.UserId == game.CreatorId
-                        elseif game.CreatorType == Enum.CreatorType.Group then
-                            return Player:GetRankInGroup(game.CreatorId) == 255
-                        end
-                    end
-                }
-            }
-        },
-    },
+	Permissions = {
+		{
+			Name = "Admin",
+			Level = 2,
+			Items = {},
+		},
+		{
+			Name = "Owner",
+			Level = 3,
+			Items = {
+				{
+					Type = "Custom",
+					Value = function(Player: Player)
+						if game.CreatorType == Enum.CreatorType.User then
+							return Player.UserId == game.CreatorId
+						elseif game.CreatorType == Enum.CreatorType.Group then
+							return Player:GetRankInGroup(game.CreatorId) == 255
+						end
+					end,
+				},
+			},
+		},
+	},
 
+	Theme = require(script.Parent.themes.default),
+
+	ChatPrefix = ";",
+	CommandSeparator = "|",
+
+	CommandBarKeycode = Enum.KeyCode.C,
+	CommandBarRequirement = 2,
 }
