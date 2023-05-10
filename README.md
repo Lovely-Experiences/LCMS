@@ -1,2 +1,1 @@
-# LCMS
-Lovely Command System (LCMD)
+<i>Coming soon...</i>
