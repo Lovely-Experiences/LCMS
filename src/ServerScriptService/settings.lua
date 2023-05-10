@@ -36,13 +36,14 @@ return {
 						elseif game.CreatorType == Enum.CreatorType.Group then
 							return Player:GetRankInGroup(game.CreatorId) == 255
 						end
+						return false
 					end,
 				},
 			},
 		},
 	},
 
-	Theme = require(script.Parent.themes.default),
+	Theme = "defualt",
 
 	ChatPrefix = ";",
 	CommandSeparator = "|",

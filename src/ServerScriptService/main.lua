@@ -32,7 +32,7 @@ type Settings = {
 		BackgroundSecondary: Color3,
 		TextColor: Color3,
 		TextColorPopOut: Color3,
-	},
+	} | string,
 	ChatPrefix: string,
 	CommandSeparator: string,
 	CommandBarKeycode: Enum.KeyCode,
