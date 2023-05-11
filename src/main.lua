@@ -27,12 +27,12 @@ type Settings = {
 			},
 		},
 	},
-	Theme: {
+	Style: {
 		Background: Color3,
 		BackgroundSecondary: Color3,
 		TextColor: Color3,
 		TextColorPopOut: Color3,
-	} | string,
+	},
 	ChatPrefix: string,
 	CommandSeparator: string,
 	CommandBarKeycode: Enum.KeyCode,
@@ -41,10 +41,40 @@ type Settings = {
 
 --// Main Function //--
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerStorage = game:GetService("ServerStorage")
+local Players = game:GetService("Players")
+
 return function(Settings: Settings)
 	--// Check if LCMS is already running.
 	--// If it is, then we throw an error.
 	if _G.LCMS_IsRunning == true then
 		error("LCMS is already running!")
+	else
+		_G.LCMS_IsRunning = true
+	end
+
+	--// Creating necessary folders.
+	local ReplicatedStorageFolder = Instance.new("Folder")
+	ReplicatedStorageFolder.Name = "LCMS_ReplicatedStorage"
+	ReplicatedStorageFolder.Parent = ReplicatedStorage
+
+	local ServerStorageFolder = Instance.new("Folder")
+	ServerStorageFolder.Name = "LCMS_ServerStorage"
+	ServerStorageFolder.Parent = ServerStorage
+
+	--// This is the "container" for all UI elements.
+	local UIContainer = Instance.new("ScreenGui")
+	UIContainer.ResetOnSpawn = false
+	UIContainer.IgnoreGuiInset = true
+	UIContainer.ClipToDeviceSafeArea = false
+	UIContainer.Name = "LCMS_UIContainer"
+	UIContainer.Parent = game:GetService("StarterGui")
+
+	--// Loop over the current players incase anything is missing.
+	for _, Player in ipairs(Players:GetPlayers()) do
+		if Player.PlayerGui:FindFirstChild(UIContainer.Name) == nil then
+			UIContainer:Clone().Parent = Player.PlayerGui
+		end
 	end
 end

@@ -20,6 +20,11 @@ return {
 
 	Permissions = {
 		{
+			Name = "Moderator",
+			Level = 1,
+			Items = {},
+		},
+		{
 			Name = "Admin",
 			Level = 2,
 			Items = {},
@@ -43,11 +48,18 @@ return {
 		},
 	},
 
-	Theme = "defualt",
+	Style = {
+		Background = Color3.fromRGB(42, 42, 42),
+		BackgroundSecondary = Color3.fromRGB(47, 47, 47),
+		TextColor = Color3.fromRGB(255, 255, 255),
+		TextColorPopOut = Color3.fromRGB(255, 101, 101),
+	},
 
 	ChatPrefix = ";",
 	CommandSeparator = "|",
 
 	CommandBarKeycode = Enum.KeyCode.C,
 	CommandBarRequirement = 2,
+
+	DataStoreName = "database-service",
 }
